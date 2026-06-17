@@ -1,0 +1,32 @@
+{
+  "reels": [
+    { "id": "reel-1", "videoId": "NssF8F2zNlI", "title": "Short Form Reel 1", "subtitle": "YouTube Shorts", "portrait": true },
+    { "id": "reel-2", "videoId": "3EqypcSSVjk", "title": "Short Form Reel 2", "subtitle": "YouTube Shorts", "portrait": true },
+    { "id": "reel-3", "videoId": "4WW1DxvUwhg", "title": "Short Form Reel 3", "subtitle": "YouTube Shorts", "portrait": true },
+    { "id": "reel-4", "videoId": "R2GAkTQ4GQg", "title": "Short Form Reel 4", "subtitle": "YouTube Shorts", "portrait": true }
+  ],
+  "youtube": [
+    { "id": "yt-1", "videoId": "RJEeTH3gQjU", "title": "Featured Video", "subtitle": "YouTube - Long-form", "featured": true },
+    { "id": "yt-2", "videoId": "rrwWsiE8yKM", "title": "YouTube Video 2", "subtitle": "YouTube - Content" },
+    { "id": "yt-3", "videoId": "ReEPBjTG0uw", "title": "YouTube Video 3", "subtitle": "YouTube - Content" }
+  ],
+  "brand": [
+    { "id": "brand-1", "videoId": "Eeic4kJusbI", "title": "Brand Campaign 1", "subtitle": "Brand - Commercial" },
+    { "id": "brand-2", "videoId": "FJMVooF0s4Y", "title": "Brand Campaign 2", "subtitle": "Brand - Promo" },
+    { "id": "brand-3", "videoId": "IoXk169Ma5c", "title": "Brand Campaign 3", "subtitle": "Brand - Campaign" }
+  ],
+  "cinematic": [
+    { "id": "cin-1", "videoId": "Q-NWvr4OCJM", "title": "Cinematic Film 1", "subtitle": "Short Film - Narrative", "featured": true },
+    { "id": "cin-2", "videoId": "grCpTDqTETM", "title": "Cinematic Film 2", "subtitle": "Cinematic - Story" },
+    { "id": "cin-3", "videoId": "2sSFye3V3mY", "title": "Cinematic Film 3", "subtitle": "Cinematic - Visual" }
+  ],
+  "hero": {
+    "videoId": "RJEeTH3gQjU"
+  },
+  "stats": [
+    { "value": "50M+", "label": "Total views generated" },
+    { "value": "80+", "label": "Brands collaborated" },
+    { "value": "200+", "label": "Videos produced" },
+    { "value": "4", "label": "Content categories" }
+  ]
+}
