@@ -4,6 +4,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import VideoCard from './VideoCard'
 import VideoModal from './VideoModal'
+import ReelsCarousel from './ReelsCarousel'
 import type { Video } from '@/lib/types'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -60,12 +61,10 @@ export default function VideoSection({ id, tag, title, subtitle, videos, layout 
           <span className="text-xs tracking-wider uppercase hidden md:block" style={{ color: 'var(--gray-500)' }}>{subtitle}</span>
         </div>
 
-        <div ref={gridRef} className={gridClass}>
-          {layout === 'reels' && videos.map(v => (
-            <div key={v.id} style={{ aspectRatio: '9/16' }}>
-              <VideoCard {...v} onClick={() => openModal(v)} />
-            </div>
-          ))}
+        <div ref={gridRef} className={layout === 'reels' ? '' : gridClass}>
+          {layout === 'reels' && (
+            <ReelsCarousel videos={videos} onOpen={openModal} />
+          )}
 
           {layout === 'youtube' && (() => {
             const [featured, ...rest] = videos
