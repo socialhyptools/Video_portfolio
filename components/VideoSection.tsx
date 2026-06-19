@@ -24,16 +24,10 @@ export default function VideoSection({ id, tag, title, subtitle, videos, layout 
   const [modal, setModal] = useState<{ videoId: string; portrait: boolean } | null>(null)
 
   useEffect(() => {
-    gsap.fromTo(headerRef.current,
-      { opacity: 0, y: 24 },
-      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: headerRef.current, start: 'top 85%' } }
-    )
+    gsap.from(headerRef.current, { opacity: 0, y: 24, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: headerRef.current, start: 'top 85%' } })
     const cards = gridRef.current?.children
     if (cards) {
-      gsap.fromTo(Array.from(cards),
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: gridRef.current, start: 'top 80%' } }
-      )
+      gsap.from(Array.from(cards), { opacity: 0, y: 40, duration: 0.7, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: gridRef.current, start: 'top 80%' } })
     }
   }, [])
 

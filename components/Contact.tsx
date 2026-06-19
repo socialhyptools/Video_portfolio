@@ -12,14 +12,8 @@ export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   useEffect(() => {
-    gsap.fromTo(leftRef.current,
-      { opacity: 0, x: -30 },
-      { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } }
-    )
-    gsap.fromTo(rightRef.current,
-      { opacity: 0, x: 30 },
-      { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out', delay: 0.1, scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } }
-    )
+    gsap.from(leftRef.current, { opacity: 0, x: -30, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } })
+    gsap.from(rightRef.current, { opacity: 0, x: 30, duration: 0.8, ease: 'power3.out', delay: 0.1, scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } })
   }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

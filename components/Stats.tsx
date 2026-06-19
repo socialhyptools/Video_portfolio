@@ -13,13 +13,10 @@ export default function Stats({ stats }: { stats: Stat[] }) {
   useEffect(() => {
     const items = containerRef.current?.querySelectorAll('.stat-item')
     if (!items) return
-    gsap.fromTo(items,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
-        scrollTrigger: { trigger: containerRef.current, start: 'top 80%' }
-      }
-    )
+    gsap.from(items, {
+      opacity: 0, y: 30, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+      scrollTrigger: { trigger: containerRef.current, start: 'top 80%' }
+    })
   }, [])
 
   return (

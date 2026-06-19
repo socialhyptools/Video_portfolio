@@ -15,14 +15,14 @@ export default function Hero({ heroVideoId }: { heroVideoId: string }) {
   const badgeRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const tl = gsap.timeline({ delay: 0.5 })
+    const tl = gsap.timeline({ delay: 0.3 })
 
-    tl.fromTo(labelRef.current, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out' })
-      .fromTo(titleRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=0.3')
-      .fromTo(descRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.5')
-      .fromTo(actionsRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-      .fromTo(visualRef.current, { opacity: 0, scale: 0.95, x: 40 }, { opacity: 1, scale: 1, x: 0, duration: 1, ease: 'power3.out' }, '-=0.9')
-      .fromTo(badgeRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: 'back.out(1.7)' }, '-=0.2')
+    tl.from(labelRef.current, { opacity: 0, x: -24, duration: 0.7, ease: 'power3.out' })
+      .from(titleRef.current, { opacity: 0, y: 40, duration: 0.9, ease: 'power3.out' }, '-=0.3')
+      .from(descRef.current, { opacity: 0, y: 20, duration: 0.7, ease: 'power3.out' }, '-=0.5')
+      .from(actionsRef.current, { opacity: 0, y: 16, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+      .from(visualRef.current, { opacity: 0, scale: 0.95, x: 40, duration: 1, ease: 'power3.out' }, '-=0.9')
+      .from(badgeRef.current, { opacity: 0, y: 16, duration: 0.6, ease: 'back.out(1.7)' }, '-=0.2')
 
     gsap.to(visualRef.current, {
       y: -40,
@@ -95,7 +95,7 @@ export default function Hero({ heroVideoId }: { heroVideoId: string }) {
           style={{ aspectRatio: '9/16', maxHeight: '75vh', background: 'var(--gray-100)', maxWidth: 360 }}
         >
           <iframe
-            src={`https://www.youtube.com/embed/${heroVideoId}?autoplay=1&mute=1&loop=1&playlist=${heroVideoId}&controls=0&modestbranding=1`}
+            src={`https://www.youtube.com/embed/${heroVideoId}?autoplay=1&mute=1&loop=1&playlist=${heroVideoId}&controls=0&modestbranding=1&playsinline=1`}
             allow="autoplay; encrypted-media"
             allowFullScreen
             className="w-full h-full border-0"

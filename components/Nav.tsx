@@ -17,10 +17,7 @@ export default function Nav() {
   const [active, setActive] = useState('')
 
   useEffect(() => {
-    gsap.fromTo(navRef.current,
-      { y: -80, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 }
-    )
+    gsap.from(navRef.current, { y: -80, opacity: 0, duration: 1, ease: 'power3.out', delay: 0.2 })
 
     const onScroll = () => {
       setScrolled(window.scrollY > 60)

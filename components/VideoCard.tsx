@@ -22,7 +22,7 @@ export default function VideoCard({ videoId, title, subtitle, onClick }: Props) 
 
   return (
     <div
-      className="relative overflow-hidden rounded-sm cursor-pointer group"
+      className="relative overflow-hidden rounded-sm cursor-pointer group h-full w-full"
       style={{ background: 'var(--gray-100)' }}
       onClick={onClick}
       data-video={videoId}
