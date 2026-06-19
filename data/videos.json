@@ -22,7 +22,6 @@
     { "id": "reel-20", "videoId": "amr0LXgUHjs", "title": "Short Form Reel 20", "subtitle": "YouTube Shorts", "portrait": true },
     { "id": "reel-21", "videoId": "L1ISaMPtOs4", "title": "Short Form Reel 21", "subtitle": "YouTube Shorts", "portrait": true },
     { "id": "reel-22", "videoId": "_0Dynty-CfA", "title": "Short Form Reel 22", "subtitle": "YouTube Shorts", "portrait": true },
-    { "id": "reel-23", "videoId": "u3Yc0n8i1n0", "title": "Short Form Reel 23", "subtitle": "YouTube Shorts", "portrait": true }
   ],
   "youtube": [
     { "id": "yt-1", "videoId": "RJEeTH3gQjU", "title": "Featured Video", "subtitle": "YouTube - Long-form", "featured": true },
