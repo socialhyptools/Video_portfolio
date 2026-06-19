@@ -6,8 +6,6 @@ import VideoSection from '@/components/VideoSection'
 import Contact from '@/components/Contact'
 import Cursor from '@/components/Cursor'
 
-export const dynamic = 'force-dynamic'
-
 export default function Home() {
   const data = getVideos()
 

@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
 import { gsap } from 'gsap'
 
 const links = [
@@ -44,13 +43,13 @@ export default function Nav() {
         transition: 'background 0.4s, backdrop-filter 0.4s, border-color 0.4s',
       }}
     >
-      <Link
+      <a
         href="/"
         className="text-xl font-bold tracking-wide"
         style={{ fontFamily: 'var(--font-playfair)', color: 'var(--accent)' }}
       >
         SocialHyp
-      </Link>
+      </a>
 
       <ul className="hidden md:flex gap-8 list-none">
         {links.map(l => (
@@ -67,13 +66,6 @@ export default function Nav() {
       </ul>
 
       <div className="flex items-center gap-3">
-        <Link
-          href="/admin"
-          className="hidden md:block text-xs tracking-wider uppercase transition-colors duration-200"
-          style={{ color: 'var(--gray-500)' }}
-        >
-          Admin
-        </Link>
         <a
           href="#contact"
           className="text-xs font-bold tracking-widest uppercase px-5 py-2 rounded-sm transition-colors duration-200"
