@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -9,24 +9,11 @@ export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null)
   const leftRef = useRef<HTMLDivElement>(null)
   const rightRef = useRef<HTMLDivElement>(null)
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   useEffect(() => {
     gsap.from(leftRef.current, { opacity: 0, x: -30, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } })
     gsap.from(rightRef.current, { opacity: 0, x: 30, duration: 0.8, ease: 'power3.out', delay: 0.1, scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } })
   }, [])
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setStatus('sending')
-    const form = e.currentTarget
-    const body = Object.fromEntries(new FormData(form))
-    try {
-      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
-      if (res.ok) { setStatus('sent'); form.reset() }
-      else setStatus('error')
-    } catch { setStatus('error') }
-  }
 
   const inputStyle = {
     background: 'var(--gray-100)',
@@ -83,7 +70,7 @@ export default function Contact() {
       </div>
 
       <div ref={rightRef}>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form action="mailto:socialhypofficial@gmail.com" method="get" encType="text/plain" className="flex flex-col gap-4">
           {[
             { label: 'Your name', name: 'name', type: 'text', placeholder: 'Full name' },
             { label: 'Email address', name: 'email', type: 'email', placeholder: 'you@company.com' },
@@ -117,16 +104,11 @@ export default function Contact() {
 
           <button
             type="submit"
-            disabled={status === 'sending' || status === 'sent'}
-            className="self-start text-xs font-bold tracking-widest uppercase px-7 py-3 rounded-sm transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-50"
+            className="self-start text-xs font-bold tracking-widest uppercase px-7 py-3 rounded-sm transition-all duration-200 hover:-translate-y-0.5"
             style={{ background: 'var(--accent)', color: 'var(--black)' }}
           >
-            {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Message sent ✓' : 'Send message'}
+            Send message
           </button>
-
-          {status === 'error' && (
-            <p className="text-sm" style={{ color: '#f87171' }}>Something went wrong. Please email us directly.</p>
-          )}
         </form>
       </div>
     </section>
