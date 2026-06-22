@@ -4,7 +4,6 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import VideoCard from './VideoCard'
 import VideoModal from './VideoModal'
-import ReelsCarousel from './ReelsCarousel'
 import type { Video } from '@/lib/types'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -26,18 +25,16 @@ export default function VideoSection({ id, tag, title, subtitle, videos, layout 
 
   useEffect(() => {
     gsap.from(headerRef.current, { opacity: 0, y: 24, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: headerRef.current, start: 'top 85%' } })
-    if (layout !== 'reels') {
-      const cards = gridRef.current?.children
-      if (cards) {
-        gsap.from(Array.from(cards), { opacity: 0, y: 40, duration: 0.7, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: gridRef.current, start: 'top 80%' } })
-      }
+    const cards = gridRef.current?.children
+    if (cards) {
+      gsap.from(Array.from(cards), { opacity: 0, y: 40, duration: 0.7, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: gridRef.current, start: 'top 80%' } })
     }
-  }, [layout])
+  }, [])
 
   const openModal = (v: Video) => setModal({ videoId: v.videoId, portrait: !!v.portrait })
 
   const gridClass = {
-    reels: '',
+    reels: 'grid grid-cols-2 md:grid-cols-4 gap-3',
     youtube: 'grid md:grid-cols-2 gap-3',
     brand: 'grid md:grid-cols-3 gap-3',
     cinematic: 'grid md:grid-cols-[2fr_1fr] gap-3',
@@ -48,12 +45,12 @@ export default function VideoSection({ id, tag, title, subtitle, videos, layout 
       <section
         ref={sectionRef}
         id={id}
-        className="py-20"
+        className="px-6 md:px-12 py-20"
         style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
       >
         <div
           ref={headerRef}
-          className="flex items-end justify-between pb-5 mb-8 px-6 md:px-12"
+          className="flex items-end justify-between pb-5 mb-8"
           style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
         >
           <div>
@@ -63,55 +60,59 @@ export default function VideoSection({ id, tag, title, subtitle, videos, layout 
           <span className="text-xs tracking-wider uppercase hidden md:block" style={{ color: 'var(--gray-500)' }}>{subtitle}</span>
         </div>
 
-        {layout === 'reels' ? (
-          <ReelsCarousel videos={videos} />
-        ) : (
-          <div ref={gridRef} className={`px-6 md:px-12 ${gridClass}`}>
-            {layout === 'youtube' && (() => {
-              const [featured, ...rest] = videos
-              return (
-                <>
-                  <div className="md:row-span-2" style={{ minHeight: 320 }}>
+        <div ref={gridRef} className={gridClass}>
+          {layout === 'reels' && videos.map(v => (
+            <div key={v.id} style={{ aspectRatio: '9/16' }}>
+              <VideoCard {...v} onClick={() => openModal(v)} />
+            </div>
+          ))}
+
+          {layout === 'youtube' && (() => {
+            const [featured, ...rest] = videos
+            return (
+              <>
+                <div className="md:row-span-2" style={{ minHeight: 320 }}>
+                  <div className="h-full" style={{ aspectRatio: undefined }}>
                     <div className="relative h-full overflow-hidden rounded-sm" style={{ background: 'var(--gray-100)', minHeight: 320 }}>
                       <VideoCard {...featured} onClick={() => openModal(featured)} />
                     </div>
                   </div>
-                  <div className="flex flex-col gap-3">
-                    {rest.map(v => (
-                      <div key={v.id} style={{ aspectRatio: '16/9' }}>
-                        <VideoCard {...v} onClick={() => openModal(v)} />
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )
-            })()}
+                </div>
+                <div className="flex flex-col gap-3">
+                  {rest.map(v => (
+                    <div key={v.id} style={{ aspectRatio: '16/9' }}>
+                      <VideoCard {...v} onClick={() => openModal(v)} />
+                    </div>
+                  ))}
+                </div>
+              </>
+            )
+          })()}
 
-            {layout === 'brand' && videos.map(v => (
-              <div key={v.id} style={{ aspectRatio: '16/9' }}>
-                <VideoCard {...v} onClick={() => openModal(v)} />
-              </div>
-            ))}
+          {layout === 'brand' && videos.map(v => (
+            <div key={v.id} style={{ aspectRatio: '16/9' }}>
+              <VideoCard {...v} onClick={() => openModal(v)} />
+            </div>
+          ))}
 
-            {layout === 'cinematic' && (() => {
-              const [featured, ...rest] = videos
-              return (
-                <>
-                  <div style={{ aspectRatio: '16/9' }}>
-                    <VideoCard {...featured} onClick={() => openModal(featured)} />
-                  </div>
-                  <div className="flex flex-col gap-3">
-                    {rest.map(v => (
-                      <div key={v.id} className="flex-1" style={{ aspectRatio: '16/9' }}>
-                        <VideoCard {...v} onClick={() => openModal(v)} />
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )
-            })()}
-          </div>
-        )}
+          {layout === 'cinematic' && (() => {
+            const [featured, ...rest] = videos
+            return (
+              <>
+                <div style={{ aspectRatio: '16/9' }}>
+                  <VideoCard {...featured} onClick={() => openModal(featured)} />
+                </div>
+                <div className="flex flex-col gap-3">
+                  {rest.map(v => (
+                    <div key={v.id} className="flex-1" style={{ aspectRatio: '16/9' }}>
+                      <VideoCard {...v} onClick={() => openModal(v)} />
+                    </div>
+                  ))}
+                </div>
+              </>
+            )
+          })()}
+        </div>
       </section>
 
       {modal && (
