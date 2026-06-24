@@ -7,34 +7,20 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null)
-  const leftRef = useRef<HTMLDivElement>(null)
-  const rightRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    gsap.from(leftRef.current, { opacity: 0, x: -30, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } })
-    gsap.from(rightRef.current, { opacity: 0, x: 30, duration: 0.8, ease: 'power3.out', delay: 0.1, scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } })
+    gsap.from(contentRef.current, { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } })
   }, [])
-
-  const inputStyle = {
-    background: 'var(--gray-100)',
-    border: '1px solid var(--gray-300)',
-    color: 'var(--white)',
-    padding: '0.75rem 1rem',
-    fontFamily: 'inherit',
-    fontSize: '0.9rem',
-    borderRadius: '2px',
-    outline: 'none',
-    width: '100%',
-  }
 
   return (
     <section
       ref={sectionRef}
       id="contact"
-      className="px-6 md:px-12 py-24 grid md:grid-cols-2 gap-16 items-start"
+      className="px-6 md:px-12 py-24"
       style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
     >
-      <div ref={leftRef}>
+      <div ref={contentRef}>
         <div className="text-xs font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--accent)' }}>Get in touch</div>
         <h2 className="text-5xl font-bold leading-tight mb-6" style={{ fontFamily: 'var(--font-playfair)' }}>
           Let&apos;s create<br />something great.
@@ -43,10 +29,10 @@ export default function Contact() {
           Whether it&apos;s a brand film, a viral campaign, or a YouTube series — we&apos;d love to hear about your project.
         </p>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2" style={{ maxWidth: 420 }}>
           {[
             { icon: '✉', label: 'socialhypofficial@gmail.com', href: 'mailto:socialhypofficial@gmail.com' },
-            { icon: '📷', label: '@socialhypofficial', href: 'https://instagram.com/socialhypofficial' },
+            { icon: '📷', label: 'info@socialhyp.com', href: 'mailto:info@socialhyp.com' },
             { icon: '▶', label: 'YouTube Channel', href: 'https://youtube.com/@socialhypofficial' },
           ].map(({ icon, label, href }) => (
             <a
@@ -67,49 +53,6 @@ export default function Contact() {
             </a>
           ))}
         </div>
-      </div>
-
-      <div ref={rightRef}>
-        <form action="mailto:socialhypofficial@gmail.com" method="get" encType="text/plain" className="flex flex-col gap-4">
-          {[
-            { label: 'Your name', name: 'name', type: 'text', placeholder: 'Full name' },
-            { label: 'Email address', name: 'email', type: 'email', placeholder: 'you@company.com' },
-          ].map(f => (
-            <div key={f.name} className="flex flex-col gap-1.5">
-              <label className="text-xs font-semibold tracking-widest uppercase" style={{ color: 'var(--gray-500)' }}>{f.label}</label>
-              <input name={f.name} type={f.type} placeholder={f.placeholder} required style={inputStyle} />
-            </div>
-          ))}
-
-          <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold tracking-widest uppercase" style={{ color: 'var(--gray-500)' }}>Project type</label>
-            <select name="project" style={inputStyle}>
-              <option value="">Select a category</option>
-              {['Social Reels / Short-form', 'YouTube Video', 'Brand / Commercial', 'Cinematic / Short film', 'Other'].map(o => (
-                <option key={o} style={{ background: 'var(--gray-100)' }}>{o}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold tracking-widest uppercase" style={{ color: 'var(--gray-500)' }}>Tell us about your project</label>
-            <textarea
-              name="message"
-              placeholder="Brief description, timeline, budget range…"
-              required
-              rows={5}
-              style={{ ...inputStyle, resize: 'vertical' }}
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="self-start text-xs font-bold tracking-widest uppercase px-7 py-3 rounded-sm transition-all duration-200 hover:-translate-y-0.5"
-            style={{ background: 'var(--accent)', color: 'var(--black)' }}
-          >
-            Send message
-          </button>
-        </form>
       </div>
     </section>
   )
